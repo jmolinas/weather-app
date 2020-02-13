@@ -5,6 +5,9 @@
 ## Build Setup
 
 ``` bash
+# Create .env file from sample
+$ cp .env.sample .env
+
 # install dependencies
 $ npm run install
 
