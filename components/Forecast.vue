@@ -19,18 +19,21 @@
                 <img :src="getWeatherIcon(this.forecast.weather[0].icon)" alt width="90" />
               </div>
             </div>
-            <span>
-              <img src="~/assets/images/icons/019-cloudy.svg" alt width="21" />{{ forecast.clouds.all }}%
-            </span>
-            <span>
-              <img src="~/assets/images/icon-wind.png" alt />
-              {{ forecast.wind.speed }}km/h
-            </span>
-            <span>
-              <img src="~/assets/images/icon-compass.png" alt />
-              {{ forecast.wind.deg }}
-              <sup>o</sup>
-            </span>
+            <div class="forecast-data">
+              <span>
+                <img src="~/assets/images/icons/019-cloudy.svg" alt width="21" />
+                {{ forecast.clouds.all }}%
+              </span>
+              <span>
+                <img src="~/assets/images/icon-wind.png" alt />
+                {{ forecast.wind.speed }}km/h
+              </span>
+              <span>
+                <img src="~/assets/images/icon-compass.png" alt />
+                {{ forecast.wind.deg }}
+                <sup>o</sup>
+              </span>
+            </div>
           </div>
         </div>
         <div class="forecast">
@@ -47,10 +50,12 @@
               <sup>o</sup>C
             </div>
             <small>
-               <img src="~/assets/images/icons/012-dawn.svg" alt width="30"/> {{ getTime(forecast.sys.sunrise) }}
+              <img src="~/assets/images/icons/012-dawn.svg" alt width="30" />
+              {{ getTime(forecast.sys.sunrise) }}
             </small>
             <small>
-               <img src="~/assets/images/icons/013-sunset.svg" alt width="30"/> {{ getTime(forecast.sys.sunset) }}
+              <img src="~/assets/images/icons/013-sunset.svg" alt width="30" />
+              {{ getTime(forecast.sys.sunset) }}
             </small>
           </div>
         </div>
@@ -79,8 +84,15 @@ export default {
     getWeatherIcon(icon) {
       return require("~/assets/images/icons/" + icon + ".svg");
     },
-    getTime(unix) {
-      return moment(unix).format('HH:mm');
+    getTime(unixTimestamp) {
+      const date = new Date(unixTimestamp * 1000);
+      // Hours part from the timestamp
+      const hours = date.getHours();
+      // Minutes part from the timestamp
+      const minutes = "0" + date.getMinutes();
+      // Seconds part from the timestamp
+      const seconds = "0" + date.getSeconds();
+      return hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
     }
   },
   computed: {
