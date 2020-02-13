@@ -50,7 +50,7 @@
                <img src="~/assets/images/icons/012-dawn.svg" alt width="30"/> {{ getTime(forecast.sys.sunrise) }}
             </small>
             <small>
-               <img src="~/assets/images/icons/013-sunset.svg" alt width="30"/> {{ getTime(1581582009) }}
+               <img src="~/assets/images/icons/013-sunset.svg" alt width="30"/> {{ getTime(forecast.sys.sunset) }}
             </small>
           </div>
         </div>
